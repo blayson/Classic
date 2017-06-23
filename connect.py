@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+# for install psycopg2 for Python 3 use sudo apt-get install python3-psycopg2
+
 import psycopg2
 
 database_name = "test_database"
@@ -13,4 +16,4 @@ try:
 
 except Exception as e:
     print(e)
-    print "I am unable to connect to the database"
+    print("I am unable to connect to the database")
