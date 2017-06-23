@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    {% if not username %}
+        <h3>Register</h3>
+        <form method="POST" name="register">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="register" value="Register">
+        </form>
+        <hr>
+        <h3>Login</h3>
+        <form method="POST" name="login">
+            <input type="text" name="username">
+            <input type="password" name="password">
+            <input type="submit" name="login">
+        </form>
+    {% else %}
+        hi {{ username }}
+    {% endif %}
+</body>
+</html>
