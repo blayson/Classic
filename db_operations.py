@@ -20,7 +20,7 @@ create_tables_command = (
 					surname VARCHAR (50) NOT NULL,
 					age INTEGER NOT NULL,
 					foto BYTEA,
-					contact VARCHAR (100)
+					contact TEXT
 				)
 			""",
 			"""
@@ -51,6 +51,7 @@ create_tables_command = (
 					cost INTEGER NOT NULL,
 					duration INTEGER NOT NULL,
 					from_location VARCHAR (4) NOT NULL,
+					book_url TEXT,
 
 					CONSTRAINT from_loc_to_airport_abbr FOREIGN KEY (from_location)
 					REFERENCES Airport_City (airport_abbr) MATCH SIMPLE
@@ -104,6 +105,24 @@ def create_user(user, cur):
 	user_id = cur.fetchone()[0]
 	return user_id
 
+def add_user(user, trip, cur):
+	add_usr = (
+			"""
+			INSERT INTO User_Trip (user_id, trip_id)
+			VALUES (%s, %s)
+			"""
+		)
+	cur.execute(add_usr, (user.id, trip.id))
+
+def remove_user(user, cur):
+	rem_user = (
+			"""
+			DELETE FROM User_Trip
+			WHERE user_id = %s
+			"""
+		)
+	cur.execute(rem_user, (user.id,))
+
 def create_trip(trip, cur):
 	add_trip = (
 			"""
@@ -128,48 +147,52 @@ def create_flight(flight, cur):
 	cur.execute(add_flight, flight_info)
 
 
-def get_trips(cur, dest, date, time = None):
-	trips = []
+# def get_trips(cur, dest, date, time = None):
+# 	trips = []
 
-	if time:
-		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s AND time = %s """
-		trip_info = (dest, date, time)
-	else:
-		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s """
-		trip_info = (dest, date)
+# 	if time:
+# 		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s AND time = %s """
+# 		trip_info = (dest, date, time)
+# 	else:
+# 		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s """
+# 		trip_info = (dest, date)
 
-	cur.execute(select_trips)
-	trip_list = cur.fetchall()
-	for trip in trips_list:
-		new_trip = Trip(trip[1], trip[2], trip[3], trip[4], trip[5])
-		new_trip.id = trip[0]
-		trips.append(new_trip)
+# 	cur.execute(select_trips)
+# 	trip_list = cur.fetchall()
+# 	for trip in trips_list:
+# 		new_trip = Trip(trip[1], trip[2], trip[3], trip[4], trip[5])
+# 		new_trip.id = trip[0]
+# 		trips.append(new_trip)
 
-	return trips
+# 	return trips
+
+
+
+def get_trip_by_id(cur, trip_id):
+	select = (
+			"""
+			SELECT * FROM Trips
+			WHERE trip_id = %s
+			"""
+		)
+	cur.execute(select, (trip_id,))
+	trip = cur.fetchone()[0]
+	return Trip(trip[0], trip[1], trip[2], trip[3], trip[4], trip[5])
 
 def get_partic(cur, trip):
 	users = []
-	select_trip = """ SELECT * FROM Trips WHERE dest = %s AND date = %s AND time BETWEEN %s AND %s """
-	trip_info = (trip.dest, trip.date, trip.time-trip.time_diff, trip.time + trip.time_diff)
-
-	cur.execute(select_trip, trip_info)
-	trips = cur.fetchall()
-
-	select_users = """ SELECT 
-						User.name,
-						User.surname,
-						User.age,
-						User.foto,
-						User.contact
-						FROM User
-						INNER JOIN User_Trip ON User_Trip.user_id = User.user_id
-						INNER JOIN Trip ON User_Trip.trip_id = %s """
-	for trip in trips:
-		cur.execute(select_users, (trip[0],))
-		users = cur.fetchall()
-		for user in users:
-			new_user = User(user[0], user[1], user[2], user[3], user[4])
-			users.append(new_user)
+	select_users = (
+			"""
+			SELECT * FROM User_Trip NATURAL JOIN Users 
+			WHERE User_Trip.trip_id = %s
+			"""
+		)
+	cur.execute(select_users, (trip.id,))
+	user_list = cur.fetchall()
+	for user in user_list:
+		new_user = User(user[2], user[3], user[4], user[5], user[6])
+		new_user.id = user[1]
+		users.append(new_user)
 
 	return users
 
@@ -181,6 +204,8 @@ def fill_test_data(cur):
 	create_user(User("Pavel"), cur)
 	create_user(User("Roma"), cur)
 	create_user(User("Jakub"), cur)
+
+
 
 def create_tables():
 	try:
