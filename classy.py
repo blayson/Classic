@@ -11,11 +11,7 @@ class User:
         self.age = age          #возраст пользователя
         self.foto_path = foto_path          #путь к фото
         self.kontakt_path = kontakt_ref     #ссылка на профиль(FB, VK ...)
-<<<<<<< HEAD
-        self.id = -1
-=======
         self.id = -1            #ID пользователя
->>>>>>> era
 
     def create_trip(self,dest,date,time,time_diff=3600,max_cap = 20):
         trip = Trip(dest,dest,date,time,time_diff,max_cap)
@@ -31,11 +27,7 @@ class Trip:
         self.time_diff = time_diff   #время в секундах которое эта группа может подождать
         self.max_cap = max_cap       #максимальное количество людей в путешествии
         self.partic = []             #список всех участников
-<<<<<<< HEAD
-        self.id = -1
-=======
         self.id = -1        #ID пользователя
->>>>>>> era
 
     def add_partic(self,user):
         if not isinstance(user, User):
