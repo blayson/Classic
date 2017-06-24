@@ -89,3 +89,4 @@ class Flight:
         self.book_url = book_url        #ссылка на бронь билета
         #TODO inicialization with sygic
         self.from_location = from_location  #кортеж (город, аэропорт)
+
