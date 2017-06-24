@@ -28,15 +28,23 @@ class Trip:
     def add_partic(self,user):
         if(not isinstance(user,User) ):
             raise Exception("Can't add this user")
+        #TODO добавить в базу данных
         self.partic.append(user)
+
+    def exclude_partic(self,user):
+        if (not isinstance(user, User)):
+            raise Exception("Can't add this user")
+        #TODO убрать из базы данных
+        self.partic.remove(user)
 
 
 class Flight:
-    def __init__(self,from_tmsp,to_tmsp,cost,duration,from_location):
+    def __init__(self,from_tmsp,to_tmsp,cost,duration,from_location,book_url):
         # self.id = id
         self.from_tmsp = from_tmsp  #временной штамп отлёта
         self.to_tmsp = to_tmsp      #временной штамп прилёта
         self.cost = cost            #цена перелёта
         self.duration = duration    #длительность перелёта
+        self.book_url = book_url        #ссылка на бронь билета
         #TODO inicialization with sygic
         self.from_location = from_location  #кортеж (город, аэропорт)
