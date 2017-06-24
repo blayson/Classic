@@ -51,56 +51,90 @@ class Trip:
         :return: list of objects Flight
         """
         api_url = 'https://api.skypicker.com/flights'
-
         adt = arrow.get(date_to, 'DD/MM/YYYY')
         date_from = adt.shift(days=-1).format('DD/MM/YYYY')
-        print(date_from, date_to)
-
-        params = {
-            'flyFrom': fly_from,
-            'to': fly_to,
-            'dateFrom': date_from,
-            'dateTo': date_to,
-            'partner': 'picky',
-            'typeFlight': 'oneway',
-        }
-        response = requests.get(api_url, params=params).json()
-
-        data = []
         time_diff = self.time_diff * 2
-        for flight in response['data']:
-            if time_to:
-                user_dt = arrow.get('{} {}'.format(date_to, time_to), 'DD/MM/YYYY HH:mm')
-                flight_dt_max = user_dt.timestamp + time_diff
-                flight_dt_min = user_dt.timestamp - time_diff
-                if (int(flight['aTimeUTC']) > flight_dt_min) and (int(flight['aTimeUTC']) < flight_dt_max):
-                    fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
-                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
-                                book_url=flight['deep_link'])
-                    data.append(fo)
-            else:
-                if arrow.get(flight['aTimeUTC']).format('DD/MM/YYYY') == arrow.get(date_to, 'DD/MM/YYYY').format(
-                        'DD/MM/YYYY'):
-                    fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
-                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
-                                book_url=flight['deep_link'])
-                    data.append(fo)
-        return data
+        data = []
+        if isinstance(fly_to, list):
+            for fly in fly_to:
+                params = {
+                    'flyFrom': fly_from,
+                    'to': fly,
+                    'dateFrom': date_from,
+                    'dateTo': date_to,
+                    'partner': 'picky',
+                    'typeFlight': 'oneway',
+                }
+                response = requests.get(api_url, params=params).json()
 
-    def flights_to_dict(self, data):
-        data_list = []
-        data_dict = {}
+                for flight in response['data']:
+                    if time_to:
+                        user_dt = arrow.get('{} {}'.format(date_to, time_to), 'DD/MM/YYYY HH:mm')
+                        flight_dt_max = user_dt.timestamp + time_diff
+                        flight_dt_min = user_dt.timestamp - time_diff
+                        if (int(flight['aTimeUTC']) > flight_dt_min) and (int(flight['aTimeUTC']) < flight_dt_max):
+                            fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
+                                        duration=flight['fly_duration'],
+                                        from_location=(flight['cityFrom'], flight['flyFrom']),
+                                        book_url=flight['deep_link'], to_location=(flight['cityTo'], flight['flyTo']))
+                            data.append(fo)
+                    else:
+                        if arrow.get(flight['aTimeUTC']).format('DD/MM/YYYY') == arrow.get(date_to,
+                                                                                           'DD/MM/YYYY').format('DD/MM/YYYY'):
+                            fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
+                                        duration=flight['fly_duration'],
+                                        from_location=(flight['cityFrom'], flight['flyFrom']),
+                                        book_url=flight['deep_link'], to_location=(flight['cityTo'], flight['flyTo']))
+                            data.append(fo)
+            return data
+        else:
+            params = {
+                'flyFrom': fly_from,
+                'to': fly_to,
+                'dateFrom': date_from,
+                'dateTo': date_to,
+                'partner': 'picky',
+                'typeFlight': 'oneway',
+            }
+            response = requests.get(api_url, params=params).json()
+            for flight in response['data']:
+                if time_to:
+                    user_dt = arrow.get('{} {}'.format(date_to, time_to), 'DD/MM/YYYY HH:mm')
+                    flight_dt_max = user_dt.timestamp + time_diff
+                    flight_dt_min = user_dt.timestamp - time_diff
+                    if (int(flight['aTimeUTC']) > flight_dt_min) and (int(flight['aTimeUTC']) < flight_dt_max):
+                        fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
+                                    duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
+                                    book_url=flight['deep_link'], to_location=(flight['cityTo'], flight['flyTo']))
+                        data.append(fo)
+                else:
+                    if arrow.get(flight['aTimeUTC']).format('DD/MM/YYYY') == arrow.get(date_to, 'DD/MM/YYYY').format(
+                            'DD/MM/YYYY'):
+                        fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
+                                    duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
+                                    book_url=flight['deep_link'], to_location=(flight['cityTo'], flight['flyTo']))
+                        data.append(fo)
+            return data
 
-        for item in data:
-            data_dict['from_tmsp'] = datetime.utcfromtimestamp(item.from_tmsp)
-            data_dict['to_tmsp'] = datetime.utcfromtimestamp(item.to_tmsp)
-            data_dict['cost'] = item.cost
-            data_dict['duration'] = item.duration
-            data_dict['from_location'] = item.from_location
-            data_dict['book_url'] = item.book_url
-            data_dict['dest'] = self.dest
-            data_list.append(data_dict)
-        return data_list
+    # def flights_to_dict(self, data):
+    #     data_list = []
+    #     data_dict = {}
+    #
+    #     for item in data:
+    #         data_dict = {
+    #             'from_tmsp': datetime.utcfromtimestamp(item.from_tmsp),
+    #             'to_tmsp': datetime.utcfromtimestamp(item.to_tmsp),
+    #             'cost':
+    #         }
+    #         # data_dict['from_tmsp'] = datetime.utcfromtimestamp(item.from_tmsp)
+    #         # data_dict['to_tmsp'] = datetime.utcfromtimestamp(item.to_tmsp)
+    #         # data_dict['cost'] = item.cost
+    #         # data_dict['duration'] = item.duration
+    #         # data_dict['from_location'] = item.from_location
+    #         # data_dict['book_url'] = item.book_url
+    #         # data_dict['dest'] = self.dest
+    #         # data_list.append(data_dict)
+    #     return data_list
 
     def trip_to_dict(self):
         trip_dict = {
@@ -115,19 +149,29 @@ class Trip:
 
 
 class Flight:
-    def __init__(self,from_tmsp,to_tmsp,cost,duration,from_location,book_url):
-        self.from_tmsp = from_tmsp  #временной штамп отлёта
-        self.to_tmsp = to_tmsp      #временной штамп прилёта
-        self.cost = cost            #цена перелёта
-        self.duration = duration    #длительность перелёта
-        self.book_url = book_url        #ссылка на бронь билета
+    def __init__(self, from_tmsp, to_tmsp, cost, duration, from_location, book_url, to_location):
+        self.from_tmsp = from_tmsp  # временной штамп отлёта
+        self.to_tmsp = to_tmsp      # временной штамп прилёта
+        self.cost = cost            # цена перелёта
+        self.duration = duration    # длительность перелёта
+        self.book_url = book_url        # ссылка на бронь билета
         #TODO inicialization with sygic
-        self.from_location = from_location  #кортеж (город, аэропорт)
+        self.from_location = from_location  # кортеж (город, аэропорт)
+        self.to_location = to_location
 
 if __name__ == '__main__':
-
-
-    # trip = Trip('PRG', '25/06/2017', '15:00')
-    # trip.id = add_trip(trip,curs)
-    # trip.trip_to_dict()
+    # trip = Trip('PRG', '26/06/2017', '10:00')
+    # # trip.id = add_trip(trip,curs)
+    # # trip.trip_to_dict()
+    # li = ['PRG', 'HAM', 'BIO']
+    # res = trip.find_flights(fly_to=li, fly_from='LGW', date_to='26/06/2017')
+    # # a = trip.flights_to_dict(res)
+    # for o in res:
+    #     print(o.from_tmsp)
+    #     print(o.to_tmsp)
+    #     print(o.cost)
+    #     print(o.duration)
+    #     print(o.from_location)
+    #     print(o.to_location)
+    #     print('\n')
     pass
