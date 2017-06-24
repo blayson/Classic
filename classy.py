@@ -6,12 +6,12 @@ from datetime import datetime
 class User:
     def __init__(self,name="Lecha",surname='Ermak',age=20,foto_path="/home/andrei/Загрузки/1.jpg",
                  kontakt_ref="https://www.facebook.com/profile.php?id=100010513029228&fref=hovercard&hc_location=chat"):
-        # self.id = id
         self.name = name        #имя пользователя
         self.surname = surname  #фамилия пользователя
         self.age = age          #возраст пользователя
         self.foto_path = foto_path          #путь к фото
         self.kontakt_path = kontakt_ref     #ссылка на профиль(FB, VK ...)
+        self.id = -1            #ID пользователя
 
     def create_trip(self,dest,date,time,time_diff=3600,max_cap = 20):
         trip = Trip(dest,dest,date,time,time_diff,max_cap)
@@ -28,6 +28,7 @@ class Trip:
         self.time_diff = time_diff   #время в секундах которое эта группа может подождать
         self.max_cap = max_cap       #максимальное количество людей в путешествии
         self.partic = []             #список всех участников
+        self.id = -1        #ID пользователя
 
     def add_partic(self,user):
         if not isinstance(user, User):
@@ -126,6 +127,9 @@ class Flight:
         self.from_location = from_location  #кортеж (город, аэропорт)
 
 if __name__ == '__main__':
+
+    
     # trip = Trip('PRG', '25/06/2017', '15:00')
+    # trip.id = add_trip(trip,curs)
     # trip.trip_to_dict()
     pass

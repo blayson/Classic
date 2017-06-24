@@ -1,0 +1,827 @@
+{
+    "Hamburg, Germany - Fuhisbuettel": [
+        "HAM"
+    ], 
+    "Dera Ismail Khan, Pakistan": [
+        "DSK"
+    ], 
+    "Bettles, AK": [
+        "BTT"
+    ], 
+    "Des Moines, IA": [
+        "DSM"
+    ], 
+    "Bilbao, Spain": [
+        "BIO"
+    ], 
+    "Elcho Island, Australia": [
+        "ELC"
+    ], 
+    "Jersey, United Kingdom": [
+        "JER"
+    ], 
+    "Kubin Island, QL, Australia": [
+        "KUG"
+    ], 
+    "Galapagos, Ecuador": [
+        "GPS"
+    ], 
+    "Lorient, France": [
+        "LRT"
+    ], 
+    "Kyzyl, Russia": [
+        "KYZ"
+    ], 
+    "Emmonak, AK": [
+        "EMK"
+    ], 
+    "Louisville, KY": [
+        "SDF"
+    ], 
+    "Enarotali, Indonesia": [
+        "EWI"
+    ], 
+    "Maputo, Mozambique": [
+        "MPM"
+    ], 
+    "Lonorore, Vanuatu": [
+        "LNE"
+    ], 
+    "Daydream Is, Australia": [
+        "DDI"
+    ], 
+    "Gamba, Gabon": [
+        "GAX"
+    ], 
+    "Manokwari, Indonesia": [
+        "MKW"
+    ], 
+    "Hanapepe, HI": [
+        "PAK"
+    ], 
+    "Long Island/Deadmans Cay, Bahamas": [
+        "LGI"
+    ], 
+    "Bhavnagar, India": [
+        "BHU"
+    ], 
+    "Detroit, MI - Metro/Wayne County": [
+        "DTW"
+    ], 
+    "Aberdeen, United Kingdom": [
+        "ABZ"
+    ], 
+    "Elista, Russia": [
+        "ESL"
+    ], 
+    "Hanover, Germany": [
+        "HAJ"
+    ], 
+    "Ely, MN": [
+        "LYU"
+    ], 
+    "Kuching, Malaysia": [
+        "KCH"
+    ], 
+    "Hamilton, New Zealand": [
+        "HLZ"
+    ], 
+    "Kufrah, Libya": [
+        "AKF"
+    ], 
+    "Belo Horizonte, Brazil - Pampulha": [
+        "PLU"
+    ], 
+    "Jeh, Marshall Islands": [
+        "JEJ"
+    ], 
+    "Kulusuk, Greenland": [
+        "KUS"
+    ], 
+    "Londrina, PR, Brazil": [
+        "LDB"
+    ], 
+    "Dayton, OH": [
+        "DAY"
+    ], 
+    "Longyearbyen, Svalbard & Jan Mayen Island": [
+        "LYR"
+    ], 
+    "Chania, Greece": [
+        "CHQ"
+    ], 
+    "Hamburg, Germany - Luebeck": [
+        "LBC"
+    ], 
+    "Harrisburg, PA": [
+        "MDT"
+    ], 
+    "Eldoret, Kenya": [
+        "EDL"
+    ], 
+    "Jakarta, Indonesia": [
+        "CGK"
+    ], 
+    "El Real, Panama": [
+        "ELE"
+    ], 
+    "Maota Savaii Is, Western Samoa": [
+        "MXS"
+    ], 
+    "Long Apung, Indonesia": [
+        "LPU"
+    ], 
+    "Jerez De La Frontere, Spain": [
+        "XRY"
+    ], 
+    "Abbotsford, BC": [
+        "YXX"
+    ], 
+    "Kuopio, Finland": [
+        "KUO"
+    ], 
+    "Biak, Indonesia": [
+        "BIK"
+    ], 
+    "Jamestown, NY": [
+        "JHW"
+    ], 
+    "Elmira, NY": [
+        "ELM"
+    ], 
+    "Chapeco, Brazil": [
+        "XAP"
+    ], 
+    "Maracay, Venezuela": [
+        "MYC"
+    ], 
+    "Long Bawan, Indonesia": [
+        "LBW"
+    ], 
+    "La Grande, QC": [
+        "YGL"
+    ], 
+    "Changuinda, Panama": [
+        "CHX"
+    ], 
+    "Bellingham, WA": [
+        "BLI"
+    ], 
+    "Fukuoka, Japan": [
+        "FUK"
+    ], 
+    "Manus Island, Papua New Guinea": [
+        "MAS"
+    ], 
+    "Kwethluk, AK": [
+        "KWT"
+    ], 
+    "Chadron, NE": [
+        "CDR"
+    ], 
+    "Long Lellang, Malaysia": [
+        "LGL"
+    ], 
+    "Beziers, France": [
+        "BZR"
+    ], 
+    "Kwigillingok, AK": [
+        "KWK"
+    ], 
+    "Gafsa, Tunisia": [
+        "GAF"
+    ], 
+    "Kugaaruk, NU": [
+        "YBB"
+    ], 
+    "Deer Lake, ON": [
+        "YVZ"
+    ], 
+    "Hangzhou, China": [
+        "HGH"
+    ], 
+    "El Vigia, Venezuela": [
+        "VIG"
+    ], 
+    "Deline, NT": [
+        "YWJ"
+    ], 
+    "Champaign/Urbana, IL": [
+        "CMI"
+    ], 
+    "Margate, South Africa": [
+        "MGH"
+    ], 
+    "Belo, Madagascar": [
+        "BMD"
+    ], 
+    "Denver, CO - International": [
+        "DEN"
+    ], 
+    "Abu Dhabi, United Arab Emirates": [
+        "AUH"
+    ], 
+    "Mankato, MN": [
+        "MKT"
+    ], 
+    "La Paz, Bolivia": [
+        "LPB"
+    ], 
+    "Mar Del Plata, BA, Argentina": [
+        "MDQ"
+    ], 
+    "El Salvador, Chile": [
+        "ESR"
+    ], 
+    "Janakpur, Nepal": [
+        "JKR"
+    ], 
+    "Bharatpur, Nepal": [
+        "BHR"
+    ], 
+    "Jacquinot Bay, Papua New Guinea": [
+        "JAQ"
+    ], 
+    "Kutaisi, Georgia": [
+        "KUT"
+    ], 
+    "Fuerteventura, Spain": [
+        "FUE"
+    ], 
+    "Mariehamn, Finland": [
+        "MHQ"
+    ], 
+    "Manzanillo, Mexico": [
+        "ZLO"
+    ], 
+    "Los Cabos, Mexico": [
+        "SJD"
+    ], 
+    "Mara Lodges, Kenya": [
+        "MRE"
+    ], 
+    "Denizli, Turkey": [
+        "DNZ"
+    ], 
+    "Daytona Beach, FL": [
+        "DAB"
+    ], 
+    "Lord Howe Island, NS, Australia": [
+        "LDH"
+    ], 
+    "Aarhus, Denmark - Tirstrup": [
+        "AAR"
+    ], 
+    "Decatur, IL": [
+        "DEC"
+    ], 
+    "Hargeisa, Somolia": [
+        "HGA"
+    ], 
+    "Dessie, Ethiopia": [
+        "DSE"
+    ], 
+    "Freetown, Sierra Leone - Lungi Intl": [
+        "FNA"
+    ], 
+    "Fuyang, China": [
+        "FUG"
+    ], 
+    "Emae, Vanuata": [
+        "EAE"
+    ], 
+    "Bishkek, Kyrgyzstan": [
+        "FRU"
+    ], 
+    "Bintuni, Indonesia": [
+        "NTI"
+    ], 
+    "Debra Tabor, Ethiopia": [
+        "DBT"
+    ], 
+    "Kushiro, Japan": [
+        "KUH"
+    ], 
+    "Gainesville, FL": [
+        "GNV"
+    ], 
+    "Charleston, WV": [
+        "CRW"
+    ], 
+    "Billund, Denmark": [
+        "BLL"
+    ], 
+    "Hamilton Island, Australia": [
+        "HTI"
+    ], 
+    "Janesville, WI": [
+        "JVL"
+    ], 
+    "Derby, Australia": [
+        "DRB"
+    ], 
+    "Hanzhang, China": [
+        "HZG"
+    ], 
+    "Embessa, Papua New Guinea": [
+        "EMS"
+    ], 
+    "Jeju, South Korea - Jeju Airport, metro area": [
+        "CJU"
+    ], 
+    "Kumejima, Japan": [
+        "UEO"
+    ], 
+    "Jaque, Panama": [
+        "JQE"
+    ], 
+    "Debra Marcos, Ethiopia": [
+        "DBM"
+    ], 
+    "Elazig, Turkey": [
+        "EZS"
+    ], 
+    "Jessore, Bangladesh": [
+        "JSR"
+    ], 
+    "Futuna Island, Vanuatu": [
+        "FTA"
+    ], 
+    "Denver, CO - Longmont Bus service": [
+        "QWM"
+    ], 
+    "Manta, Ecuador": [
+        "MEC"
+    ], 
+    "Jasper, AB - Rail service": [
+        "XDH"
+    ], 
+    "Maribor, Slovenia": [
+        "MBX"
+    ], 
+    "Jamnagar, India": [
+        "JGA"
+    ], 
+    "La Coruna, Spain": [
+        "LCG"
+    ], 
+    "Emo, Papua New Guinea": [
+        "EMO"
+    ], 
+    "Birch Creek, AK": [
+        "KBC"
+    ], 
+    "Longview, TX": [
+        "GGG"
+    ], 
+    "Biarritz, France": [
+        "BIQ"
+    ], 
+    "Harrison, AR": [
+        "HRO"
+    ], 
+    "Galway, Ireland": [
+        "GWY"
+    ], 
+    "Gagnoa, Cote D''Ivoire": [
+        "GGN"
+    ], 
+    "Abakan, Russia": [
+        "ABA"
+    ], 
+    "Bhairawa, Nepal": [
+        "BWA"
+    ], 
+    "Chambord, QC - Rail service": [
+        "XCI"
+    ], 
+    "Birmingham, AL": [
+        "BHM"
+    ], 
+    "Gaborone, Botswana": [
+        "GBE"
+    ], 
+    "Harlingen, TX": [
+        "HRL"
+    ], 
+    "Abilene, TX": [
+        "ABI"
+    ], 
+    "Bisha, Saudi Arabia": [
+        "BHH"
+    ], 
+    "Aberdeen, SD": [
+        "ABR"
+    ], 
+    "Bhuj, India": [
+        "BHJ"
+    ], 
+    "Belleville, IL": [
+        "BLV"
+    ], 
+    "Kuala Terengganu, Malaysia": [
+        "TGG"
+    ], 
+    "Loreto, Mexico": [
+        "LTO"
+    ], 
+    "Chah-Bahar, Iran": [
+        "ZBR"
+    ], 
+    "Bimini, Bahamas": [
+        "NSB"
+    ], 
+    "Longana, Vanuatu": [
+        "LOD"
+    ], 
+    "La Ceiba, Honduras": [
+        "LCE"
+    ], 
+    "Jeddah, Saudi Arabia": [
+        "JED"
+    ], 
+    "La Crosse, WI": [
+        "LSE"
+    ], 
+    "Harbin, China": [
+        "HRB"
+    ], 
+    "Kundiawa, Papau New Guinea": [
+        "CMU"
+    ], 
+    "Losuia, Papua New Guinea": [
+        "LSA"
+    ], 
+    "Delhi, India": [
+        "DEL"
+    ], 
+    "Jalapa, Mexico": [
+        "JAL"
+    ], 
+    "Charleville, Australia": [
+        "CTL"
+    ], 
+    "Gallup, NM": [
+        "GUP"
+    ], 
+    "Jaipur, India": [
+        "JAI"
+    ], 
+    "Gallivare, Sweden": [
+        "GEV"
+    ], 
+    "El Portillo/Samana, Dominician Republic - Elortillo": [
+        "EPS"
+    ], 
+    "Bhadrapur, Nepal": [
+        "BDP"
+    ], 
+    "Biskra, Algeria": [
+        "BSK"
+    ], 
+    "Elim, AK": [
+        "ELI"
+    ], 
+    "Billings, MT": [
+        "BIL"
+    ], 
+    "Los Mochis, Mexico": [
+        "LMM"
+    ], 
+    "Chandler, QC - Rail service": [
+        "XDL"
+    ], 
+    "Abadan, Iran": [
+        "ABD"
+    ], 
+    "Bikini Atoll, Marshall Islands": [
+        "BII"
+    ], 
+    "Bemidji, MN": [
+        "BJI"
+    ], 
+    "Kudat, Malaysia": [
+        "KUD"
+    ], 
+    "Funafuti Atol, Tuvalu": [
+        "FUN"
+    ], 
+    "Jackson Hole, WY": [
+        "JAC"
+    ], 
+    "Eleuthera Island, Bahamas": [
+        "ELH"
+    ], 
+    "Manja, Madagascar": [
+        "MJA"
+    ], 
+    "Kuujjuaq, QC": [
+        "YVP"
+    ], 
+    "Jacobabad, Pakistan": [
+        "JAG"
+    ], 
+    "Deirezzor, Syria - Al Jafrah": [
+        "DEZ"
+    ], 
+    "Fukushima, Japan": [
+        "FKS"
+    ], 
+    "Friedrichshafer, Germany": [
+        "FDH"
+    ], 
+    "Long Beach, CA": [
+        "LGB"
+    ], 
+    "Birmingham, United Kingdom": [
+        "BHX"
+    ], 
+    "Biloxi/Gulfport, MS": [
+        "GPT"
+    ], 
+    "Derim, Papua New Guinea": [
+        "DER"
+    ], 
+    "Biratragar, Nepal": [
+        "BIR"
+    ], 
+    "Abu Simbel, Egypt": [
+        "ABS"
+    ], 
+    "Manley Hot Springs, AK": [
+        "MLY"
+    ], 
+    "Aasiaat, Greenland": [
+        "JEG"
+    ], 
+    "Changde, China": [
+        "CGD"
+    ], 
+    "Del Reo, TX": [
+        "DRT"
+    ], 
+    "Maraba, PA, Brazil": [
+        "MAB"
+    ], 
+    "Mao, Chad": [
+        "AMO"
+    ], 
+    "Birdsville, Australia": [
+        "BVI"
+    ], 
+    "Changchun, China": [
+        "CGQ"
+    ], 
+    "Dera Ghazi, Pakistan": [
+        "DEA"
+    ], 
+    "Deer Lake, NL": [
+        "YDF"
+    ], 
+    "Kuri, Papua New Guinea": [
+        "KUQ"
+    ], 
+    "Dembidollo, Ethiopia": [
+        "DEM"
+    ], 
+    "Funchal, Portugal": [
+        "FNC"
+    ], 
+    "Kwajalein, Marshall Islands": [
+        "KWA"
+    ], 
+    "Bellona, Solomon Islands": [
+        "BNY"
+    ], 
+    "Manzini, Swaziland": [
+        "MTS"
+    ], 
+    "Hamilton, ON": [
+        "YHM"
+    ], 
+    "Denham, Australia": [
+        "DNM"
+    ], 
+    "Aalesund, Norway": [
+        "AES"
+    ], 
+    "Long Seridan, Malaysia": [
+        "ODN"
+    ], 
+    "Jackson, TN": [
+        "MKL"
+    ], 
+    "Kugluktuk/Coppermine, NU": [
+        "YCO"
+    ], 
+    "Jayapura, Indonesia": [
+        "DJJ"
+    ], 
+    "Chandigarh, India": [
+        "IXC"
+    ], 
+    "Deering, AK": [
+        "DRG"
+    ], 
+    "Mannheim, Germany": [
+        "MHG"
+    ], 
+    "Halmstad, Sweden": [
+        "HAD"
+    ], 
+    "Kuusamo, Finland": [
+        "KAO"
+    ], 
+    "Hammerfest, Norway": [
+        "HFT"
+    ], 
+    "Chambery, France": [
+        "CMF"
+    ], 
+    "Mare, New Caledonia": [
+        "MEE"
+    ], 
+    "Manston, United Kingdom": [
+        "MSE"
+    ], 
+    "Lourdes/Tarbes, France": [
+        "LDE"
+    ], 
+    "Fukue, Japan": [
+        "FUJ"
+    ], 
+    "Elfin Cove, AK": [
+        "ELV"
+    ], 
+    "La Palma, Panama": [
+        "PLP"
+    ], 
+    "Kuwait, Kuwait": [
+        "KWI"
+    ], 
+    "Lopez Island, WA": [
+        "LPS"
+    ], 
+    "Hana, HI - Island of Maui": [
+        "HNM"
+    ], 
+    "Jaluit Island, Marshall Islands": [
+        "UIT"
+    ], 
+    "Jacksonville, NC": [
+        "OAJ"
+    ], 
+    "Jamestown, ND": [
+        "JMS"
+    ], 
+    "Jacksonville, FL": [
+        "JAX"
+    ], 
+    "Big Trout, ON": [
+        "YTL"
+    ], 
+    "Aarhus, Denmark - Bus service": [
+        "ZID"
+    ], 
+    "Fuzhou, China": [
+        "FOC"
+    ], 
+    "Manzanillo, Cuba": [
+        "MZO"
+    ], 
+    "Chalkyitsik, AK": [
+        "CIK"
+    ], 
+    "Fresno, CA": [
+        "FAT"
+    ], 
+    "Hancock, MI": [
+        "CMX"
+    ], 
+    "Hanimaadhoo, Maldives": [
+        "HAQ"
+    ], 
+    "Chapleau, ON": [
+        "YLD"
+    ], 
+    "Bhubaneswar, India": [
+        "BBI"
+    ], 
+    "Kuujjuarapik, QC": [
+        "YGW"
+    ], 
+    "Harare, Zimbabwe": [
+        "HRE"
+    ], 
+    "Bhopal, India": [
+        "BHO"
+    ], 
+    "Abidjan, Cote d''Ivoire": [
+        "ABJ"
+    ], 
+    "Binghamton, NY": [
+        "BGM"
+    ], 
+    "El Yopal, Colombia": [
+        "EYP"
+    ], 
+    "Ceuta, Spain and Canary Islands": [
+        "JCU"
+    ], 
+    "Changzhou, China": [
+        "CZX"
+    ], 
+    "Jambi. Indonesia": [
+        "DJB"
+    ], 
+    "Los Angeles, CA": [
+        "LAX"
+    ], 
+    "Abha, Saudi Arabia": [
+        "AHB"
+    ], 
+    "Elba Island, Italy": [
+        "EBA"
+    ], 
+    "Manokotak, AK": [
+        "KMO"
+    ], 
+    "Devil''s Lake, ND": [
+        "DVL"
+    ], 
+    "Denpasar Bali, Indonesia": [
+        "DPS"
+    ], 
+    "Jackson, MS": [
+        "JAN"
+    ], 
+    "Kuantan, Malaysia": [
+        "KUA"
+    ], 
+    "Manizales, Colombia": [
+        "MZL"
+    ], 
+    "Delta Junction, AK": [
+        "DJN"
+    ], 
+    "Bhamo, Myanmar": [
+        "BMO"
+    ], 
+    "Chaoyang, China": [
+        "CHG"
+    ], 
+    "Hanoi, Viet Nam - Noibai": [
+        "HAN"
+    ], 
+    "Long Island, Australia": [
+        "HAP"
+    ], 
+    "Emerald, Australia": [
+        "EMD"
+    ], 
+    "Jacareacanga, Brazil": [
+        "JCR"
+    ], 
+    "Aalborg, Denmark": [
+        "AAL"
+    ], 
+    "Long Banga, Malaysia": [
+        "LBP"
+    ], 
+    "Belleville, ON - Rail service": [
+        "XVV"
+    ], 
+    "Charleston, SC": [
+        "CHS"
+    ], 
+    "Detroit, MI - All airports": [
+        "DTT"
+    ], 
+    "Elat, Italy": [
+        "ETH"
+    ], 
+    "Deauville, France": [
+        "DOL"
+    ], 
+    "Maracaibo, Venezuela": [
+        "MAR"
+    ], 
+    "Bima, Indonesia": [
+        "BMU"
+    ], 
+    "Harstad-Narvik, Norway": [
+        "EVE"
+    ], 
+    "Futuna Island, Wallis and Futuna Islands": [
+        "FUT"
+    ], 
+    "Bintulu, Malaysia": [
+        "BTU"
+    ], 
+    "Longreach, QL, Australia": [
+        "LRE"
+    ], 
+    "Elko, NV": [
+        "EKO"
+    ]
+}
