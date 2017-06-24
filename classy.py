@@ -21,13 +21,13 @@ class User:
 
 class Trip:
     def __init__(self, dest,date,time,time_diff=3600,max_cap = 20):
-        # self.id = id
         self.dest = dest    #аэропорт
         self.date = date    #дата приезда на место встречи
         self.time = time    #время приезда на место встречи
         self.time_diff = time_diff   #время в секундах которое эта группа может подождать
         self.max_cap = max_cap       #максимальное количество людей в путешествии
         self.partic = []             #список всех участников
+
 
     def add_partic(self,user):
         if not isinstance(user, User):
@@ -116,7 +116,6 @@ class Trip:
 
 class Flight:
     def __init__(self,from_tmsp,to_tmsp,cost,duration,from_location,book_url):
-        # self.id = id
         self.from_tmsp = from_tmsp  #временной штамп отлёта
         self.to_tmsp = to_tmsp      #временной штамп прилёта
         self.cost = cost            #цена перелёта
@@ -126,6 +125,8 @@ class Flight:
         self.from_location = from_location  #кортеж (город, аэропорт)
 
 if __name__ == '__main__':
+
     # trip = Trip('PRG', '25/06/2017', '15:00')
+    # trip
     # trip.trip_to_dict()
     pass
