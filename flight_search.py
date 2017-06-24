@@ -1,8 +1,5 @@
 import requests
 import arrow
-import dateutil.parser
-from datetime import datetime
-import time
 
 from classy import Flight
 
@@ -35,30 +32,33 @@ class Trip:
         response = requests.get(api_url, params=params).json()
 
         data = []
-
+        time_diff = self.time_diff * 2
         for flight in response['data']:
             if time_to:
                 user_dt = arrow.get('{} {}'.format(date_to, time_to), 'DD/MM/YYYY HH:mm')
-                time_diff = self.time_diff * 2
                 flight_dt_max = user_dt.timestamp + time_diff
                 flight_dt_min = user_dt.timestamp - time_diff
                 if (int(flight['aTimeUTC']) > flight_dt_min) and (int(flight['aTimeUTC']) < flight_dt_max):
                     fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
-                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']))
+                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
+                                book_url=flight['deep_link'])
                     data.append(fo)
             else:
                 if arrow.get(flight['aTimeUTC']).format('DD/MM/YYYY') == arrow.get(date_to, 'DD/MM/YYYY').format('DD/MM/YYYY'):
                     fo = Flight(from_tmsp=flight['dTimeUTC'], to_tmsp=flight['aTimeUTC'], cost=flight['price'],
-                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']))
+                                duration=flight['fly_duration'], from_location=(flight['cityFrom'], flight['flyFrom']),
+                                book_url=flight['deep_link'])
                     data.append(fo)
         return data
 
 if __name__ == '__main__':
-
+    from datetime import datetime
     t = Trip(1, 2, 3)
     r = t.find_flights(fly_from='PRG', fly_to='LGW',
-                       date_to=arrow.utcnow().shift(days=+1).format('DD/MM/YYYY'), time_to='15:10')
+                       date_to=arrow.utcnow().shift(days=+1).format('DD/MM/YYYY'), time_to='10:00')
     for item in r:
         print(item.cost)
         print(item.from_location)
         print(datetime.utcfromtimestamp(item.from_tmsp), datetime.utcfromtimestamp(item.to_tmsp))
+        print(item.book_url)
+
