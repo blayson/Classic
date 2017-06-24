@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block body %}
+  {% for trip in trips %}
+    <div class="column col-3">
+      {% with trip=trip %}
+        {% include "trip_card.html" %}
+      {% endwith %}
+    </div>
+  {% endfor %}
+{% endblock body %}

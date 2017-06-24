@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-image">
+    <img src="{{ url_for('static', filename='img/1.jpg') }}" class="img-responsive" />
+  </div>
+  <div class="card-header">
+    <h4 class="card-title">{{ trip.dest }}</h4>
+    <h6 class="card-subtitle">Starts on {{ trip.date }} at {{ trip.time }}</h6>
+  </div>
+  <div class="card-body">
+    {{ trip.description }}
+  </div>
+  <div class="card-footer">
+    <a class="btn btn-primary" href="{{ url_for('trip-detail', trip_id=1) }}">Detail</a>
+  </div>
+</div>

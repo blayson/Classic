@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+  <title></title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='spectre/docs/dist/spectre.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='spectre/docs/dist/spectre-exp.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='spectre/docs/dist/spectre-icons.min.css') }}" />
+
 </head>
 <body>
-    {% if not username %}
-        <h3>Register</h3>
-        <form method="POST" name="register">
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <input type="submit" name="register" value="Register">
-        </form>
-        <hr>
-        <h3>Login</h3>
-        <form method="POST" name="login">
-            <input type="text" name="username">
-            <input type="password" name="password">
-            <input type="submit" name="login">
-        </form>
-    {% else %}
-        hi {{ username }}
-    {% endif %}
+  <div class="container">
+    <div class="columns">
+      <div class="column col-12">
+        {% include "navbar.html" %}
+      </div>
+      {% block body %}
+      <div class="column col-12">
+        {% if not username %}
+        <div class="columns">
+          <div class="column col-6">
+            <h3>Register</h3>
+            {% include "register_form.html" %}
+          </div>
+          <div class="column col-6">
+            <h3>Login</h3>
+            {% include "login_form.html" %}
+          </div>
+        </div>
+        {% else %}
+          <h3>Hi, {{ username }}</h3>
+        {% endif %}
+      </div>
+      {% endblock body %}
+    </div>
+  </div>
 </body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </html>

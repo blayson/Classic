@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pickaday.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/pickaday.js') }}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/auto-complete.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/auto-complete.js') }}"></script>
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a href="{{ url_for('index') }}" class="navbar-brand mr-10">Matter</a>
+    <a href="{{ url_for('about_us') }}" class="btn btn-link">About us</a>
+    <a href="{{ url_for('new_trip') }}" class="btn btn-link">Create your travel party</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-link">Logout</a>
+  </section>
+  <section class="navbar-section">
+    <form method="GET" action="{{ url_for('trip_list') }}">
+      <div class="input-group input-inline">
+        <input class="form-input" type="text" placeholder="To" id="to_search_input" name="to"/>
+        <input class="form-input" type="text" placeholder="Date" id="date_search_input" name="date"/>
+        <button type="submit" class="btn btn-primary input-group-btn">Search</button>
+      </div>
+    </form>
+  </section>
+</header>
+
+<script type="text/javascript">
+  new Pikaday(
+    { 
+      field: document.getElementById('date_search_input'),
+      // trigger: document.getElementById('datepicker-button'),
+      minDate: new Date(2000, 0, 1),
+      toString(date, format) {
+          const day = date.getDate();
+          const month = date.getMonth();
+          const year = date.getFullYear();
+          return `${day}.${month}.${year}`;
+      },
+      // ariaLabel: 'Custom label',
+      maxDate: new Date(2020, 12, 31),
+      yearRange: [2017, 2020],
+    }
+  );
+
+  new autoComplete(
+    {
+      selector: '#to_search_input',
+      source: function (term, suggest) {
+        term = term.toLowerCase();
+        $.get(
+          "{{ url_for('load_cities') }}",
+          { name: term },
+          function(data) {
+            suggest(JSON.parse(data));
+          }
+        );        
+      }
+    }
+  );
+</script>

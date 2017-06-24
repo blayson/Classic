@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block body %}
+<div class="column col-6">
+  <form method="POST" name="new_trip">
+    <div class="form-group">
+      <label class="form-label">To</label>
+      <input class="form-input" type="text" name="to" id="to_create_input">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Date</label>
+      <input class="form-input" type="text" name="date" id="date_create_input">
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary" type="submit" name="trip" value="Create">
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+  new Pikaday(
+    { 
+      field: document.getElementById('date_create_input'),
+      // trigger: document.getElementById('datepicker-button'),
+      minDate: new Date(2000, 0, 1),
+      toString(date, format) {
+          const day = date.getDate();
+          const month = date.getMonth();
+          const year = date.getFullYear();
+          return `${day}.${month}.${year}`;
+      },
+      maxDate: new Date(2020, 12, 31),
+      yearRange: [2017, 2020],
+    }
+  );
+
+  new autoComplete(
+    {
+      selector: '#to_create_input',
+      source: function (term, suggest) {
+        term = term.toLowerCase();
+        $.get(
+          "{{ url_for('load_cities') }}",
+          { name: term },
+          function(data) {
+            suggest(JSON.parse(data));
+          }
+        );        
+      }
+    }
+  );
+</script>
+{% endblock body %}
