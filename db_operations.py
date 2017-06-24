@@ -17,24 +17,28 @@ create_commands = (
 					name VARCHAR (50) UNIQUE NOT NULL,
 					surname VARCHAR (50) UNIQUE NOT NULL,
 					age INTEGER NOT NULL,
-					foto INTEGER,
+					foto BYTEA,
 					contact VARCHAR (100)
+				)
+			""",
+			"""
+				CREATE TABLE Airport_City (
+					airport_abbr VARCHAR (3) PRIMARY KEY,
+					city_name VARCHAR (50) NOT NULL
 				)
 			""",
 			"""
 				CREATE TABLE Trips (
 					trip_id SERIAL PRIMARY KEY,
-					dest VARCHAR (3) UNIQUE NOT NULL,
+					dest VARCHAR (3) NOT NULL,
 					date DATE NOT NULL,
 					time TIME NOT NULL,
 					time_diff INTEGER NOT NULL,
-					max_cap INTEGER NOT NULL
-				)
-			""",
-			"""
-				CREATE TABLE Airport_City (
-					airport_abbr VARCHAR (3) UNIQUE PRIMARY KEY,
-					city_name VARCHAR (50) NOT NULL
+					max_cap INTEGER NOT NULL,
+
+					CONSTRAINT dest_to_airport_abbr FOREIGN KEY (dest)
+      				REFERENCES Airport_City (airport_abbr) MATCH SIMPLE
+      				ON UPDATE NO ACTION ON DELETE NO ACTION	
 				)
 			""",
 			"""
@@ -44,7 +48,11 @@ create_commands = (
 					to_tmsp INTEGER NOT NULL,
 					cost INTEGER NOT NULL,
 					duration INTEGER NOT NULL,
-					from_location VARCHAR (3) UNIQUE NOT NULL
+					from_location VARCHAR (3) NOT NULL,
+
+					CONSTRAINT from_loc_to_airport_abbr FOREIGN KEY (from_location)
+					REFERENCES Airport_City (airport_abbr) MATCH SIMPLE
+      				ON UPDATE NO ACTION ON DELETE NO ACTION
 				)
 			"""
 	)
@@ -64,11 +72,6 @@ drop_commands = (
 			"""
 	)
 
-show_tables = """ 
-			SELECT table_name FROM information_schema.tables
-       		WHERE table_schema = 'public' 
-       	"""
-
 def create_tables():
 	try:
 	    conn = psycopg2.connect(dbname = database_name, user = user_name, host = host_name, port = port, password = passwd)
@@ -76,8 +79,6 @@ def create_tables():
 	    
 	    for command in create_commands:
 	    	cur.execute(command)
-
-	    cur.execute(show_tables)
 
 	    for command in drop_commands:
 	    	cur.execute(command)
