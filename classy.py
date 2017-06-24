@@ -1,5 +1,7 @@
 import requests
 import arrow
+from datetime import datetime
+
 
 class User:
     def __init__(self,name="Lecha",surname='Ermak',age=20,foto_path="/home/andrei/Загрузки/1.jpg",
@@ -17,7 +19,6 @@ class User:
         return trip
 
 
-
 class Trip:
     def __init__(self, dest,date,time,time_diff=3600,max_cap = 20):
         # self.id = id
@@ -29,13 +30,13 @@ class Trip:
         self.partic = []             #список всех участников
 
     def add_partic(self,user):
-        if(not isinstance(user,User) ):
+        if not isinstance(user, User):
             raise Exception("Can't add this user")
         #TODO добавить в базу данных
         self.partic.append(user)
 
     def exclude_partic(self,user):
-        if (not isinstance(user, User)):
+        if not isinstance(user, User):
             raise Exception("Can't add this user")
         #TODO убрать из базы данных
         self.partic.remove(user)
@@ -77,6 +78,21 @@ class Trip:
                                 book_url=flight['deep_link'])
                     data.append(fo)
         return data
+
+    def to_dict(self, data):
+        data_list = []
+        data_dict = {}
+
+        for item in data:
+            data_dict['from_tmsp'] = datetime.utcfromtimestamp(item.from_tmsp)
+            data_dict['to_tmsp'] = datetime.utcfromtimestamp(item.to_tmsp)
+            data_dict['cost'] = item.cost
+            data_dict['duration'] = item.duration
+            data_dict['from_location'] = item.from_location
+            data_dict['book_url'] = item.book_url
+            data_dict['dest'] = self.dest
+            data_list.append(data_dict)
+        return data_list
 
 
 class Flight:

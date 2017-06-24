@@ -1,5 +1,6 @@
 import requests
 import arrow
+from datetime import datetime
 
 from classy import Flight
 
@@ -15,6 +16,14 @@ class Trip:
         self.partic = []
 
     def find_flights(self, fly_to, date_to, fly_from, time_to=None):
+        """
+
+        :param fly_to:
+        :param date_to: 'DD/MM/YYYY'
+        :param fly_from:
+        :param time_to: 'HH:mm' hours and minutes
+        :return: list of objects Flight
+        """
         api_url = 'https://api.skypicker.com/flights'
 
         adt = arrow.get(date_to, 'DD/MM/YYYY')
@@ -51,14 +60,30 @@ class Trip:
                     data.append(fo)
         return data
 
+    def to_dict(self, data):
+        data_list = []
+        data_dict = {}
+
+        for item in data:
+            data_dict['from_tmsp'] = datetime.utcfromtimestamp(item.from_tmsp)
+            data_dict['to_tmsp'] = datetime.utcfromtimestamp(item.to_tmsp)
+            data_dict['cost'] = item.cost
+            data_dict['duration'] = item.duration
+            data_dict['from_location'] = item.from_location
+            data_dict['book_url'] = item.book_url
+            data_dict['dest'] = self.dest
+            data_list.append(data_dict)
+        return data_list
+
 if __name__ == '__main__':
-    from datetime import datetime
+
     t = Trip(1, 2, 3)
     r = t.find_flights(fly_from='PRG', fly_to='LGW',
-                       date_to=arrow.utcnow().shift(days=+1).format('DD/MM/YYYY'), time_to='10:00')
-    for item in r:
-        print(item.cost)
-        print(item.from_location)
-        print(datetime.utcfromtimestamp(item.from_tmsp), datetime.utcfromtimestamp(item.to_tmsp))
-        print(item.book_url)
-
+                       date_to=arrow.utcnow().shift(days=+1).format('DD/MM/YYYY'))
+    # for itm in r:
+    #     print(itm.cost)
+    #     print(itm.from_location)
+    #     print(datetime.utcfromtimestamp(itm.from_tmsp), datetime.utcfromtimestamp(itm.to_tmsp))
+    #     print
+    for itm in t.to_dict(r):
+        print(itm)
