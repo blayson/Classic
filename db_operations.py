@@ -3,14 +3,22 @@
 # for install psycopg2 for Python 3 use sudo apt-get install python3-psycopg2
 
 from classy import *
-import airport_codes
 import psycopg2
+import json
 
 database_name = "test_database"
 user_name = "test_master"
 host_name = "test-database.cvzlexvifitu.eu-central-1.rds.amazonaws.com"
 port = "5432"
 passwd = "testpassword"
+
+airports = {}
+with open("airports.txt") as data_file:
+	airports = json.loads(data_file.read())
+
+conn = psycopg2.connect(dbname = database_name, user = user_name, host = host_name, port = port, password = passwd)
+cur = conn.cursor()
+
 
 create_tables_command = (
 			"""
@@ -91,8 +99,18 @@ drop_tables = (
 			DROP TABLE Airport_City
 			"""
 	)
-		
-def create_user(user, cur):
+
+def get_all_trips():
+	trips = []
+	cur.execute(""" SELECT * FROM Trips """)
+	trip_list = cur.fetchall()
+	for trip in trip_list:
+		new_trip = Trip(trip[1], trip[2], trip[3], trip[4], trip[5])
+		new_trip.id = trip[0]
+		trips.append(trips)
+	return trips
+
+def create_user(user):
 	add_user = (
 			"""
 			INSERT INTO Users (name, surname, age, foto, contact)
@@ -103,9 +121,12 @@ def create_user(user, cur):
 	user_info = (user.name, user.surname, user.age, user.foto_path, user.kontakt_path)
 	cur.execute(add_user, user_info)
 	user_id = cur.fetchone()[0]
+
+	conn.commit()
+
 	return user_id
 
-def add_user(user, trip, cur):
+def add_user(user, trip):
 	add_usr = (
 			"""
 			INSERT INTO User_Trip (user_id, trip_id)
@@ -113,8 +134,9 @@ def add_user(user, trip, cur):
 			"""
 		)
 	cur.execute(add_usr, (user.id, trip.id))
+	conn.commit()
 
-def remove_user(user, cur):
+def remove_user(user):
 	rem_user = (
 			"""
 			DELETE FROM User_Trip
@@ -122,8 +144,10 @@ def remove_user(user, cur):
 			"""
 		)
 	cur.execute(rem_user, (user.id,))
+	conn.commit()
 
-def create_trip(trip, cur):
+
+def create_trip(trip):
 	add_trip = (
 			"""
 			INSERT INTO Trips (dest, date, time, time_diff, max_cap)
@@ -134,9 +158,11 @@ def create_trip(trip, cur):
 	trip_info = (trip.dest, trip.date, trip.time, trip.time_diff, trip.max_cap)
 	cur.execute(add_trip, trip_info)
 	trip_id = cur.fetchone()[0]
+	conn.commit()
+
 	return trip_id
 
-def create_flight(flight, cur):
+def create_flight(flight):
 	add_flight = (
 			"""
 			INSERT INTO Flights (from_tmsp, to_tmsp, cost, duration)
@@ -145,30 +171,35 @@ def create_flight(flight, cur):
 		)
 	flight_info = (flight.from_tmsp, flight.to_tmsp, flight.cost, flight.duration)
 	cur.execute(add_flight, flight_info)
+	conn.commit()
+
+def get_trips(city, date, time = None):
+	trips = []
+	try:
+		airp_list = airports[city]
+		for airport in airp_list:
+			if time:
+				select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s AND time = %s """
+				trip_info = (airport, date, time)
+			else:	
+				select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s """
+				trip_info = (airport, date)
+
+			cur.execute(select_trips, trip_info)
+			trip_list = cur.fetchall()
+
+			for trip in trip_list:
+				new_trip = Trip(trip[1], trip[2], trip[3], trip[4], trip[5])
+				new_trip.id = trip[0]
+				trips.append(new_trip)
+
+	except (ValueError, FileNotFoundError):
+		print("Trips are not found!")
+
+	return trips
 
 
-# def get_trips(cur, dest, date, time = None):
-# 	trips = []
-
-# 	if time:
-# 		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s AND time = %s """
-# 		trip_info = (dest, date, time)
-# 	else:
-# 		select_trips = """ SELECT * FROM Trips WHERE dest = %s AND date = %s """
-# 		trip_info = (dest, date)
-
-# 	cur.execute(select_trips)
-# 	trip_list = cur.fetchall()
-# 	for trip in trips_list:
-# 		new_trip = Trip(trip[1], trip[2], trip[3], trip[4], trip[5])
-# 		new_trip.id = trip[0]
-# 		trips.append(new_trip)
-
-# 	return trips
-
-
-
-def get_trip_by_id(cur, trip_id):
+def get_trip_by_id(trip_id):
 	select = (
 			"""
 			SELECT * FROM Trips
@@ -177,9 +208,11 @@ def get_trip_by_id(cur, trip_id):
 		)
 	cur.execute(select, (trip_id,))
 	trip = cur.fetchone()[0]
+	conn.commit()
+
 	return Trip(trip[0], trip[1], trip[2], trip[3], trip[4], trip[5])
 
-def get_partic(cur, trip):
+def get_partic(trip):
 	users = []
 	select_users = (
 			"""
@@ -194,24 +227,25 @@ def get_partic(cur, trip):
 		new_user.id = user[1]
 		users.append(new_user)
 
+	conn.commit()
+
 	return users
 
-def fill_test_data(cur):
-	create_user(User("Vova"), cur)
-	create_user(User("Andrii"), cur)
-	create_user(User("Lecha"), cur)
-	create_user(User("Andrei"), cur)
-	create_user(User("Pavel"), cur)
-	create_user(User("Roma"), cur)
-	create_user(User("Jakub"), cur)
+def fill_test_data():
+	create_user(User("Vova"))
+	create_user(User("Andrii"))
+	create_user(User("Lecha"))
+	create_user(User("Andrei"))
+	create_user(User("Pavel"))
+	create_user(User("Roma"))
+	create_user(User("Jakub"))
 
 
 
 def create_tables():
 	try:
-	    conn = psycopg2.connect(dbname = database_name, user = user_name, host = host_name, port = port, password = passwd)
-	    cur = conn.cursor()
 
+	    
 	    print("Connected!")
 	    print("Tables creating...")
 
@@ -227,7 +261,7 @@ def create_tables():
 	    print("Fill data...")
 
 	    # TEST
-	    fill_test_data(cur)
+	    fill_test_data()
 
 	    print("Filled!")
 	    print("Drop tables...")
@@ -250,5 +284,5 @@ def create_tables():
 	    if conn is not None:
 	        conn.close()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	create_tables()
