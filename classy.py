@@ -42,6 +42,14 @@ class Trip:
         self.partic.remove(user)
 
     def find_flights(self, fly_to, date_to, fly_from, time_to=None):
+        """
+        Search of the available tickets according to you arrival time, using kiwicom API
+        :param fly_to:
+        :param date_to: 'DD/MM/YYYY'
+        :param fly_from:
+        :param time_to: 'HH:mm' - hours and minutes
+        :return: list of objects Flight
+        """
         api_url = 'https://api.skypicker.com/flights'
 
         adt = arrow.get(date_to, 'DD/MM/YYYY')
@@ -79,7 +87,7 @@ class Trip:
                     data.append(fo)
         return data
 
-    def to_dict(self, data):
+    def flights_to_dict(self, data):
         data_list = []
         data_dict = {}
 
@@ -94,6 +102,17 @@ class Trip:
             data_list.append(data_dict)
         return data_list
 
+    def trip_to_dict(self):
+        trip_dict = {
+            'dest': self.dest,
+            'date': self.date,
+            'time': self.time,
+            'time_diff': self.time_diff,
+            'max_cap': self.max_cap,
+            'partic': self.partic
+        }
+        return trip_dict
+
 
 class Flight:
     def __init__(self,from_tmsp,to_tmsp,cost,duration,from_location,book_url):
@@ -105,3 +124,8 @@ class Flight:
         self.book_url = book_url        #ссылка на бронь билета
         #TODO inicialization with sygic
         self.from_location = from_location  #кортеж (город, аэропорт)
+
+if __name__ == '__main__':
+    # trip = Trip('PRG', '25/06/2017', '15:00')
+    # trip.trip_to_dict()
+    pass
